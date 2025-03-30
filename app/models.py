@@ -5,3 +5,4 @@ class User(db.Model):
 	username = db.Column(db.String(32))
 	password = db.Column(db.String(32))
 	email = db.Column(db.String(32))
+	remember_me = db.Column(db.Boolean)
