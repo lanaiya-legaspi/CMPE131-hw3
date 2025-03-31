@@ -1,13 +1,26 @@
 from app import myapp_obj
 from flask import render_template, redirect
-from app.forms import LoginForm
-from app.models import User
+from app.forms import LoginForm, RecipeForm
+from app.models import User #, RecipeList
 from app import db
 
 @myapp_obj.route("/")
+@myapp_obj.route("/recipes")
 def main():
-	name = "Carlos"
-	return render_template("hello.html", name=name)
+	username = "user04732"
+#	recipes = RecipeList()
+	return render_template("recipes.html", username=username)
+
+
+@myapp_obj.route("/recipes/new")
+def new_recipe():
+	form = RecipeForm()
+	if form.validate_on_submit():
+		return redirect("/")
+	else:
+		print("MOOO MOOO")
+	return render_template("new-recipes.html", form=form)
+
 
 @myapp_obj.route("/accounts")
 def users():
