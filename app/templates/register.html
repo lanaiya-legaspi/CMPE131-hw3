@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Create Account</title>
+	</head>
+	<body>
+		<h1>Create Account</h1>
+
+		<form action="" method="POST">
+			{{form.hidden_tag()}}
+			<p> {{form.username.label}} <br>
+			{{form.username}}</p>
+
+			<p>{{form.password.label}}<br>
+			{{form.password}}</p>
+		
+			<button>Submit</button><br>
+		
+		</form>
+		<br>
+		<a href="{{url_for('login')}}">Already have an account? Login here</a>
+	</body>
+</html>
