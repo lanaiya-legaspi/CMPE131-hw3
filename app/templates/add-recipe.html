@@ -1,16 +1,28 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>New Recipe</title>
-	</head>
-	<body>
-		<h1>New Recipe</h1>
-		<h3>Please enter the following fields:</h3>
+{% extends 'base.html' %}
 
-		<h3>{{form.title.label}} {{form.title}}</h3>
-		<h3>{{form.description.label}}: <br> {{form.description}}</h3>
-		<h3>{{form.ingredients.label}}: <br> {{form.ingredients}}</h3>
-		<h3>{{form.instructions.label}}: <br> {{form.instructions}}</h3>
-		<h3>{{form.submit}}</h3>
-	</body>
-</html>
+{% block header %}
+<h1 class="text-center">Create New Recipe</h1>
+{% endblock %}
+
+{% block content %}
+<form method="POST" action="/">
+{{ form.hidden_tag() }}
+<div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">{{form.title.label}}</label>
+  <input type="text" class="form-control" id="exampleFormControlInput1" name="title">
+</div>
+<div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">{{form.description.label}}</label>
+  <input type="text" class="form-control" id="exampleFormControlInput1" name="description">
+</div>
+<div class="mb-3">
+  <label for="exampleFormControlTextarea1" class="form-label">{{form.ingredients.label}}</label>
+  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="ingredients"></textarea>
+</div>
+<div class="mb-3">
+  <label for="exampleFormControlTextarea1" class="form-label">{{form.instructions.label}}</label>
+  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="instructions"></textarea>
+</div>
+<button class="btn btn-primary" type="submit">Create Recipe!</button>
+</form>
+{% endblock %}
