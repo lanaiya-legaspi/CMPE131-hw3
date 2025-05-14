@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block header %}
+	<h1 class="text-center">Delete Recipe</h1>
+{% endblock %}
+
+{% block content %}
+<form method="POST" action="/">
+{{form.hidden_tag()}}
+
+<h1>Delete Recipe</h1>
+{% for recipe in recipes %}
+	<h2>Recipe # {{recipe.id}} : {{recipe.title}}</h2>
+{% endfor %}
+</form>
+{% endblock %}

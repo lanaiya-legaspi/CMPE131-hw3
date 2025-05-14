@@ -11,9 +11,10 @@
 		<h3><a href="{{url_for('login')}}">Login Page</a></h3>
 		<h1>Welcome, {{username}}, to your Recipe Book!</h1>
 		<h2> Your Recipes</h2>
-
-			{% for recipe in recipes %}
-				<h2>Recipe # {{recipe.id}}: {{recipe.title}}</h2>
-			{% endfor %}
+		<form method="POST" action="/">
+		{% for recipe in recipes %}
+			<h2><a href="/recipe/{{recipe.id}}">Recipe # {{recipe.id}}: {{recipe.title}}</a></h2>
+		{% endfor %}
+		</form>
 		
 {% endblock %}
