@@ -13,6 +13,28 @@ def main():
 	recipes = Recipe.query.all()
 	return render_template("recipes.html", username=username, recipes=recipes)
 
+#View Individual Recipes
+@myapp_obj.route("/recipe/<id>", methods=["GET", "POST"])
+def recipeX(id):
+
+	def parseInstructions(id):
+		recipe = db.session.get(Recipe, id)
+		if recipe and recipe.instructions:
+			return recipe.instructions.split(".")
+		return []
+
+	def parseIngredients(id):
+		recipe = db.session.get(Recipe, id)
+		if recipe and recipe.instructions:
+			return recipe.instructions.split(".")
+		return []
+
+	recipe = db.session.get(Recipe, id)
+	ing_descs = parseIngredients(id)
+	recipe_insns = parseInstructions(id)
+
+	return render_template("recipe.html", recipe=recipe, ing_descs=ing_descs, recipe_insns=recipe_insns)
+
 #Create New Recipes page
 @myapp_obj.route("/add-recipe", methods=["GET", "POST"])
 def new_recipe():
@@ -53,6 +75,15 @@ def edit_recipe(id):
 		print("Recipe edited!")
 		return redirect(url_for("recipes"))
 	return render_template("edit-recipe.html", form=form)
+
+#Delete Recipe page
+@myapp_obj.route("/delete-recipe", methods=["GET", "POST"])
+def del_recipe():
+	form = RecipeForm()
+	recipes = Recipe.query.all()
+	if request.method == "POST":
+		recipe_title = request.form[recipe.title]
+	return render_template("delete-recipe.html", recipes=recipes, form=form)
 
 @myapp_obj.route("/accounts")
 def users():

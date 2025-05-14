@@ -5,12 +5,21 @@
 {% endblock %}
 
 {% block content %}
-<form method="POST" action="/">
+<form method="POST" action="/recipes">
 {{form.hidden_tag()}}
 
 <h1>Delete Recipe</h1>
+<table class="table">
+<thead><tr>
+<th scope="col">#</th>
+<th scope="col">Recipe Name</th>
+</tr></thead>
+<tbody>
 {% for recipe in recipes %}
-	<h2>Recipe # {{recipe.id}} : {{recipe.title}}</h2>
+	<tr><th scope="row">{{recipe.id}}</th>
+	<td>{{recipe.title}}</td>
+	<td><input type="text" class="btn btn-primary" name="{{recipe.id}}" value="Delete"></td></tr>
 {% endfor %}
+</table>
 </form>
 {% endblock %}
