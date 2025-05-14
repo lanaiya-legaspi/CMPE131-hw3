@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<br>
+<h1 class="text-center">{{recipe.title}}</h1>
+{% endblock %}
+
+{% block content %}
+	<br><br>
+	<div class="container text-center">
+	<div class="row">
+	<div class="col"<h3></h3></div>
+	</div>
+	<h2>Recipe Description: {{recipe.description}}</h2>
+	
+	<h2>Recipe Ingredients</h2>
+	<table class="table">
+	<thead><tr>
+	<th scope="col">#</th>
+	<th scope="col">Ingredient</th>
+	</tr></thead>
+
+	<tbody>
+	{% for ing_desc in ing_descs %}
+	<tr><th scope="row">{{loop.index}}</th>
+	<td>{{ing_descs[loop.index]}}</td></tr>
+	{% endfor %}
+	</tbody>
+	</table>
+	</div>
+
+{% endblock%}
