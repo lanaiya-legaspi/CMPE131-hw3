@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<h1 class="text-center">Edit A Recipe</h1>
+{% endblock %}
+
+{% block content %}
+<form method="POST" action="/">
+{{form.hidden_tag()}}
+<div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">{{form.title.label}}</label>
+  <input type="text" class="form-control" id="exampleFormControlInput1" name="title" placeholder="{{form.title.data}}">
+</div>
+<div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">{{form.description.label}}</label>
+  <input type="text" class="form-control" id="exampleFormControlInput1" name="description" placeholder="{{form.description.data}}">
+</div>
+<div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">{{form.ingredients.label}}</label>
+  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="ingredients">{{form.ingredients.data}}</textarea>
+</div>
+<div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">{{form.instructions.label}}</label>
+  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="instructions">{{form.instructions.data}}</textarea>
+</div>
+<button class="btn btn-primary" type="submit">Edit Recipe</button>
+</form>
+{% endblock %}

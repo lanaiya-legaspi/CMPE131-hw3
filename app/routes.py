@@ -5,6 +5,7 @@ from app.models import User, Recipe
 from app import db
 from datetime import datetime
 
+# View Recipes page
 @myapp_obj.route("/", methods=["GET","POST"])
 @myapp_obj.route("/recipes", methods=["GET","POST"])
 def main():
@@ -12,7 +13,7 @@ def main():
 	recipes = Recipe.query.all()
 	return render_template("recipes.html", username=username, recipes=recipes)
 
-
+#Create New Recipes page
 @myapp_obj.route("/add-recipe", methods=["GET", "POST"])
 def new_recipe():
 	form = RecipeForm()
@@ -32,6 +33,26 @@ def new_recipe():
 		print("MOOO MOOO")
 	return render_template("add-recipe.html", form=form)
 
+#Edit Recipe page
+@myapp_obj.route("/edit-recipe/<id>", methods=["GET", "POST"])
+def edit_recipe(id):
+	form = RecipeForm()
+	recipe = Recipe.query.filter(Recipe.id==id).first()
+	form.title.data = recipe.title
+	form.description.data = recipe.description
+	form.ingredients.data = recipe.ingredients
+	form.instructions.data = recipe.instructions
+
+	if request.method == "POST":
+		recipe.title = request.form['title']
+		recipe.description = request.form['description']
+		recipe.ingredients = request.form['ingredients']
+		recipe.instructions = request.form['instructions']
+		recipe.created = str(datetime.now().strftime("%m-%d-%Y"))
+		db.session.commit()
+		print("Recipe edited!")
+		return redirect(url_for("recipes"))
+	return render_template("edit-recipe.html", form=form)
 
 @myapp_obj.route("/accounts")
 def users():
